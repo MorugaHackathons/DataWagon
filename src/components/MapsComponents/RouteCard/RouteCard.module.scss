@@ -1,6 +1,11 @@
 // RouteCard.module.scss
 @import '../../../colors';
 
+.animatedRouteCard {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(-10px);
+}
+
 .routeCard {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -13,10 +18,6 @@
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-
-  .selected {
-    border: 2px solid red; /* или любой другой цвет */
-  }
 
   .progressBarContainer {
     position: relative;
@@ -86,6 +87,10 @@
   strong {
     float: left;
   }
+}
+
+.selected {
+  border: 2px solid red !important;
 }
 
 .location,

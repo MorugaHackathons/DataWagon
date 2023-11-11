@@ -20,9 +20,24 @@
 }
 
 .icon {
+  cursor: pointer;
   width: 50px;
   height: 50px;
-  background-color: $primary; /* Цвет иконки */
+  background-color: $white; /* Цвет иконки */
   margin: 10px;
   border-radius: 50%;
+}
+
+.activeComponent {
+  position: fixed;
+  top: 0;
+  left: 94px; /* Ширина NavBar */
+  width: calc(33vw - 94px); /* Ширина экрана минус ширина NavBar */
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
