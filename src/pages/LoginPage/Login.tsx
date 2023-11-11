@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
 
-const Login: React.FC = () => {
+interface LoginProps {
+    onLogin: () => void,
+}
+
+const Login: React.FC<LoginProps> = ({ onLogin }: LoginProps) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
     const handleLogin = () => {
         if (!login || !password) {
-            setError('Please enter both username and password.');
-        } else {
-            // Ваша логика авторизации
+            setError('Введите логин и пароль.');
+        } else if (login === "admin" || password === "admin") {
+            onLogin();
             setError('');
+        } else {
+            setError('Неверный логин или пароль.');
         }
     };
 

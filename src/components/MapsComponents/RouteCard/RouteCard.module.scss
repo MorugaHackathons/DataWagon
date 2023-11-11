@@ -1,0 +1,28 @@
+.routeCard {
+  width: 235px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.routeNumber {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.status {
+  color: #f00;
+}
+
+.wagonType {
+  font-size: 18px;
+}
+
+.additionalInfo {
+  font-size: 16px;
+  color: #666;
+}

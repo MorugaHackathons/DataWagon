@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Login from "./pages/LoginPage/Login";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Login from "./pages/LoginPage/Login";
+import Main from "./pages/MainPage/Main";
 
 const App: React.FC = () => {
+    const [isAuthent, setIsAuthent] = useState(true)
+    console.log(isAuthent)
+
+    const handleLogin = () => {
+        setIsAuthent(true);
+        console.log(isAuthent)
+    };
+
     return (
-        <BrowserRouter basename="/">
+        <BrowserRouter>
             <Routes>
-                <Route path="/" Component={Login}/>
+                <Route path="/" element={isAuthent ? <Main/> : <Login onLogin={handleLogin}/>}/>
             </Routes>
         </BrowserRouter>
     );
