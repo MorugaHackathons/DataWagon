@@ -1,0 +1,55 @@
+@import 'src/colors';
+
+.leftBar {
+  padding: 16px;
+  border-right: 1px solid #ccc;
+
+  .searchInput {
+    background-color: $white;
+    height: 40px;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease; // Добавлен переход для box-shadow
+
+    &:focus {
+      outline: none;
+      border-color: $primary; // Цвет при активации
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); // Тень при активации
+    }
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Эффект парения при наведении
+    }
+  }
+
+  .filterButton {
+    margin-left: 1%;
+    height: 40px;
+    padding: 10px;
+    background-color: $white; // Основной цвет кнопки
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; // Добавлен переход для box-shadow
+
+    &:hover {
+      background-color: $white; // Цвет при наведении
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Эффект парения при наведении
+    }
+
+    .route-card {
+      margin-bottom: 8px;
+    }
+  }
+
+  .formContainer {
+    display: flex;
+  }
+}

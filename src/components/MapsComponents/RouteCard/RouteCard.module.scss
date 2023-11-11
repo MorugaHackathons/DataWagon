@@ -1,28 +1,107 @@
+// RouteCard.module.scss
+@import '../../../colors';
+
 .routeCard {
-  width: 235px;
-  height: 200px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 94%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+
+  .selected {
+    border: 2px solid red; /* или любой другой цвет */
+  }
+
+  .progressBarContainer {
+    position: relative;
+    height: 8px;
+    width: 100%;
+    margin: 5px;
+  }
+
+  .progressBarBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $gray; /* Цвет серого фона */
+  }
+
+  .progressBarFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: $primary; /* Измените цвет в соответствии с вашим дизайном */
+    width: 80%; /* Замените на динамический стиль или значение прогресса */
+  }
+
+  .progressBarContainer, .progressBarBackground, .progressBarFill {
+    border-radius: 10px;
+  }
+}
+
+.routeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .routeNumber {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .status {
-  color: #f00;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, system-ui;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: $red;
+  color: $white;
 }
 
-.wagonType {
-  font-size: 18px;
+.detailsContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
-.additionalInfo {
+.leftDetails {
+  text-align: left;
+}
+
+.centerDetails {
+  text-align: center;
+}
+
+.rightDetails {
+  text-align: right;
+  strong {
+    float: left;
+  }
+}
+
+.location,
+.time,
+.loadingPoints,
+.trainInfo,
+.cargoInfo {
   font-size: 16px;
-  color: #666;
+  margin-bottom: 5px;
+}
+
+.location strong,
+.time strong,
+.loadingPoints strong,
+.trainInfo strong,
+.cargoInfo strong {
+  font-weight: bold;
+  white-space: pre-wrap;
 }

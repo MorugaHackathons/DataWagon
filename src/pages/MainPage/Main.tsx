@@ -1,12 +1,18 @@
+// Main.tsx
 import React from 'react';
-import Map from '../../components/MapsComponents/Map/Map';
-import RouteCard from "../../components/MapsComponents/RouteCard/RouteCard";
+import LeftBar from '../../components/LeftBar/LeftBar';
+import Map from '../../components/MapsComponents/Map/Map'
+import styles from './Main.module.scss';
 
 const Main: React.FC = () => {
-
     return (
-        <div>
-            <Map/>
+        <div className={styles.mainContainer}>
+            <div className={styles.leftBarContainer}>
+                <LeftBar/>
+            </div>
+            <div className={styles.mapContainer}>
+                <Map />
+            </div>
         </div>
     );
 };

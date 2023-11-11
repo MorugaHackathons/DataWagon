@@ -21,7 +21,7 @@
   }
 
   h2 {
-    color: $primaryColor;
+    color: $primary;
   }
 
   form {
@@ -41,19 +41,19 @@
         transition: border-color 0.3s;
 
         &.errorInput {
-          border-color: $errorColor;
+          border-color: $error;
         }
       }
     }
 
     .errorMessage {
-      color: $errorColor;
+      color: $error;
       margin-top: 5px;
     }
 
     button {
       padding: 8px;
-      background-color: $primaryColor;
+      background-color: $primary;
       color: white;
       border: none;
       border-radius: 3px;
@@ -61,7 +61,7 @@
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: darken($primaryColor, 20%);
+        background-color: darken($primary, 20%);
       }
     }
   }

@@ -1,0 +1,28 @@
+@import '../../colors'; // Подключите ваш файл с цветами
+
+.navBar {
+  position: fixed;
+  top: 0;
+  left: -90px; /* Скрыт за экраном */
+  width: 94px;
+  height: 100vh;
+  background-color: $white; /* Основной цвет фона */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.3s ease; /* Плавное движение */
+  z-index: 1; /* Поверх других элементов */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.navBar.hovered {
+  left: 0; /* Выезжает при наведении */
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: $primary; /* Цвет иконки */
+  margin: 10px;
+  border-radius: 50%;
+}

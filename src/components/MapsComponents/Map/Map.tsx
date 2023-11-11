@@ -1,52 +1,68 @@
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet'
+import React, { useEffect, useState } from 'react';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
+import defaultImg from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import styles from './Map.module.scss'
+import styles from './Map.module.scss';
 
-const HandleMapZoom = () => {
-    const map = useMap();
+const Map = () => {
+    const position1 = [51.505, -0.09];
+    const position2 = [51.51, -0.1];
+    const position3 = [51.5075, -0.095];
+
+    const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+
+    const defaultIcon = L.icon({
+        iconAnchor: [12, 41],
+        iconSize: [25, 41],
+        iconUrl: defaultImg,
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+        shadowUrl: iconShadow,
+    });
+
+    const [markers, setMarkers] = useState([
+        { position: position1, icon: defaultIcon, id: 1 },
+        { position: position2, icon: defaultIcon, id: 2 },
+        { position: position3, icon: defaultIcon, id: 3 },
+    ]);
 
     useEffect(() => {
-        const handleMapZoom = () => {
-            const currentZoomLevel = map.getZoom();
-            console.log(`Map zoom level: ${currentZoomLevel}`);
-        };
+        const map = L.map('map').setView([51.505, -0.09], 13);
 
-        map.on('zoom', handleMapZoom);
-    }, [map]);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-    return null;
-};
+        const drawnLines: L.Polyline[] = [];
 
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow
-});
+        markers.forEach(marker => {
+            const markerInstance = L.marker(marker.position as L.LatLngExpression, { icon: marker.icon, draggable: true })
+                .addTo(map)
+                .bindPopup(`Latitude: ${marker.position[0]}, Longitude: ${marker.position[1]}`);
 
-const Map: React.FC = () => {
-    return (
-        <MapContainer
-            center={[51.505, -0.09]}
-            zoom={13}
-            className={styles.mapContainer}
-        >
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="© OpenStreetMap contributors"
-            />
-            <Marker icon={DefaultIcon} position={[51.505, -0.09]} opacity={0.5}>
-                <Popup>
-                    <div style={{backgroundColor: 'white', height: '100px', padding: '10px', color: 'red'}}>
-                        ы<br/>в<br/>а<br/>щ<br/>р<br/>г<br/>о<br/>ы<br/>в<br/>а<br/>г<br/>ш<br/>щ<br/>п<br/>р<br/>ф<br/>ы<br/>в<br/>а<br/>пг<br/>ш<br/>щ<br/>ы<br/>в<br/>о<br/>а<br/>п<br/>ш<br/>з<br/>ф<br/>ы<br/>в<br/>а<br/>о<br/>п<br/>рщ\nфывагшпрывагш<br/>прывагщптывао<br/>прывагщпрвагщпрыв<br/>агшпроваг<br/>щпровагшщпр<br/>ывагщрогщывашрогшщ<br/>ывароывагшщрогш<br/>щваырогшщыв<br/>арогшщывап<br/>гщывапгщываопщгшв<br/>ыапогшщвыапогщва<br/>вагщрывагщроывагщрогщшыварошщывар<br/>ошщыварошщываоршщывар
-                    </div>
-                </Popup>
-            </Marker>
-            <HandleMapZoom/>
-        </MapContainer>
-    );
+            markerInstance.on('dragend', (event) => {
+                const newPosition = event.target.getLatLng();
+                marker.position = [newPosition.lat, newPosition.lng];
+
+                // Update popup content with new coordinates
+                markerInstance.setPopupContent(`Latitude: ${newPosition.lat}, Longitude: ${newPosition.lng}`);
+
+                // Clear previous lines
+                drawnLines.forEach(line => map.removeLayer(line));
+
+                // Draw lines between all markers
+                markers.forEach(otherMarker => {
+                    if (otherMarker.id !== marker.id) {
+                        const line = L.polyline([marker.position as L.LatLngExpression, otherMarker.position as L.LatLngExpression], { color: 'red' }).addTo(map);
+                        drawnLines.push(line);
+                    }
+                });
+            });
+        });
+    }, [markers]);
+
+    return <div id="map" className={styles.mapContainer} />;
 };
 
 export default Map;
