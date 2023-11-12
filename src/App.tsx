@@ -9,14 +9,14 @@ const App: React.FC = () => {
     console.log(isAuthent)
 
     const handleLogin = () => {
-        setIsAuthent(true);
+        setIsAuthent(!isAuthent);
         console.log(isAuthent)
     };
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={isAuthent ? <Main/> : <Login onLogin={handleLogin}/>}/>
+                <Route path="/" element={isAuthent ? <Main isAuthent={isAuthent} handleLogin={handleLogin}/> : <Login onLogin={handleLogin}/>}/>
             </Routes>
         </BrowserRouter>
     );

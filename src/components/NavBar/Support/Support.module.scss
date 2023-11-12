@@ -1,5 +1,5 @@
 // Support.module.scss
-@import "../../../colors"; // Предполагается, что у вас есть файл с цветами
+@import "../../../colors";
 
 .supportContainer {
   display: flex;
@@ -8,7 +8,7 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background-color: #f2f2f2; /* Замените на ваш цвет фона */
+  background-color: #f2f2f2;
 
   .inputArea {
     position: absolute;
@@ -31,19 +31,19 @@
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box;
-    transition: box-shadow 0.3s ease; // Добавлен переход для box-shadow
+    transition: box-shadow 0.3s ease;
 
     &:focus {
       outline: none;
-      border-color: $primary; // Цвет при активации
-      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); // Тень при активации
+      border-color: $primary;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
     }
   }
 
   .searchInput:focus {
     outline: none;
-    border-color: $primary; // Цвет при активации
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); // Тень при активации
+    border-color: $primary;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   }
 
   .attachmentButton,
@@ -55,8 +55,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    transition: background-color 0.8s ease, color 0.7s ease-in-out, box-shadow 0.3s ease; // Добавлен переход для box-shadow
-
+    transition: background-color 0.8s ease, color 0.7s ease-in-out, box-shadow 0.3s ease;
     &:hover {
 
     }
@@ -64,9 +63,9 @@
 
   .attachmentButton:hover,
   .sendButton:hover {
-    background-color: $white; // Цвет при наведении
+    background-color: $white;
     color: $white;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1); // Эффект парения при
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -77,6 +76,7 @@
   padding: 10px;
   margin-right: 10px;
   display: inline-block;
+  overflow-y: auto;
 }
 
 .messageBox {

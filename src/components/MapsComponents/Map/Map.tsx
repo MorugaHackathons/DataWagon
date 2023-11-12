@@ -8,7 +8,8 @@ import styles from './Map.module.scss';
 
 interface MapProps {
     selectedMarker: any,
-    setSelectedMarker: any
+    setSelectedMarker: any,
+
 }
 
 const Map = ({ selectedMarker, setSelectedMarker }: MapProps) => {

@@ -3,13 +3,23 @@ import React, { useState } from 'react';
 import styles from './NavBar.module.scss'; // Make sure you have the necessary styles
 import Chat from './Chat/Chat'; // Import your components here
 import Support from './Support/Support';
+import Notifications from "./Notifications/Notifications"
 import chatIcon from "../../assets/chat.svg"
 import supportIcon from "../../assets/support.svg"
 import closeIcon from "../../assets/close.svg"
 import dashboardIcon from "../../assets/dashboard.svg"
+import notificationIcon from "../../assets/notification.svg"
+import exitIcon from "../../assets/exit.svg"
+import logo from "../../assets/logo.svg"
 import support from "./Support/Support";
+import LeftBarProps from "../LeftBar/LeftBar";
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+    isAuthent: boolean,
+    handleLogin: () => void;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ isAuthent, handleLogin }: NavBarProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const [activeComponent, setActiveComponent] = useState<React.ReactNode | null>(null);
 
@@ -40,9 +50,15 @@ const NavBar: React.FC = () => {
             onMouseLeave={handleMouseLeave}>
 
             {/* Your icon buttons go here */}
+            <img className={styles.logo} src={logo}/>
             <div className={styles.icon} onClick={() => {console.log("dashboard")}}><img src={dashboardIcon} alt={"Dashboard"}/></div>
+            <div className={styles.icon} onClick={() => handleClick(<Notifications />)}><img src={notificationIcon} alt={"Chat"}/></div>
             <div className={styles.icon} onClick={() => handleClick(<Chat />)}><img src={chatIcon} alt={"Chat"}/></div>
             <div className={styles.icon} onClick={() => handleClick(<Support />)}><img src={supportIcon} alt={"Support"}/></div>
+            <div className={styles.icon} onClick={() => {
+                handleLogin()
+                console.log(isAuthent)
+            }}><img src={exitIcon} alt={"exit"}/></div>
             {activeComponent ? (<div className={`${styles.icon} ${styles.closeButton}`} onClick={handleCloseClick}>
                 <img src={closeIcon} alt={"Close"}/>
             </div>) : null}

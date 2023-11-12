@@ -6,6 +6,10 @@
   transform: translateY(-10px);
 }
 
+.gridContainer {
+
+}
+
 .routeCard {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -70,8 +74,9 @@
 }
 
 .detailsContainer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки равной ширины */
+  grid-gap: 10px; /* Расстояние между ячейками */
 }
 
 .leftDetails {
@@ -79,11 +84,11 @@
 }
 
 .centerDetails {
-  text-align: center;
+  text-align: left;
 }
 
 .rightDetails {
-  text-align: right;
+  text-align: left;
   strong {
     float: left;
   }
@@ -109,4 +114,36 @@
 .cargoInfo strong {
   font-weight: bold;
   white-space: pre-wrap;
+}
+
+
+.loadingPointsContainer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.loadingPointsTitle {
+  display: block;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.loadingPoints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.leftPoint,
+.rightPoint {
+  width: 48%; // Ширина блока
+  margin-bottom: 5px;
+}
+
+.leftPoint {
+  text-align: left;
+}
+
+.rightPoint {
+  text-align: right;
 }
